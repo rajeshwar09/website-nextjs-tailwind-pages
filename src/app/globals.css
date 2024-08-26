@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Card CSS */
+/* -------- */
+.card {
+  @apply relative flex flex-wrap flex-col items-center;
+  @apply bg-gray-800 w-[300px] rounded-2xl overflow-hidden;
+  @apply shadow-md;
+}
+
+.description {
+  @apply bg-transparent rounded-2xl p-10 z-[2] transition duration-500 ease-in-out;
+}
+
+.circle-top, .circle-bottom {
+  @apply absolute w-12 h-14 bg-orange-500 rounded-full transition duration-500 ease-in-out;
+}
+
+.circle-top {
+  @apply top-0 left-0 -mt-4 -ml-4;
+}
+
+.circle-bottom {
+  @apply bottom-0 right-0 -mb-4 -mr-4;
+}
+
+.card:hover .circle-top, .card:hover .circle-bottom {
+  @apply transform scale-[12];
+}
+
+.card:hover .description p, .card:hover .description h3 {
+  @apply text-gray-900;
+}
+
+.description h3 {
+  @apply text-white;
+}
+
+/* Card style 2 */
+
+.card-style-2 {
+  @apply relative z-[1] grid place-items-center text-center;
+  @apply bg-cover bg-center rounded-2xl overflow-hidden p-4;
+  background-image: url('../assets/image.webp');
+}
+
+.card-style-2::before,
+.card-style-2::after {
+  @apply absolute left-0 w-full;
+  height: calc(60% + 35px);
+  @apply bg-white transition duration-[500];
+}
+
+.card-style-2::before {
+  @apply z-[-1];
+  clip-path: polygon(0 100%, 0 100%, 45% 0, 100% 100%);
+  @apply top-0 -translate-y-full;
+}
+
+.card-style-2::after {
+  @apply z-[1];
+  clip-path: polygon(0 55%, 100% 0, 100% 100%, 0% 100%);
+  @apply translate-y-full;
+}
+
+.card-style-2_body {
+  @apply opacity-0 transition duration-[250];
+}
+
+.card-style-2_title {
+  @apply text-[#6a515e] mb-4;
+}
+
+.card-style-2:hover::before,
+.card-style-2:hover::after {
+  @apply translate-y-0;
+}
+
+.card-style-2:hover .card-style-2_body {
+  @apply opacity-100;
+  transition-delay: 750ms; /* or add a custom delay value to your tailwind.config.js file */
+}
+
+/* Custom clip polygon */
+@layer utilities {
+  .clip-your-needful-style {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 6vw));
+  }
+}
